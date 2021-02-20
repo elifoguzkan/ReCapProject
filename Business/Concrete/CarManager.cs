@@ -2,24 +2,66 @@
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using DataAccess.Abstract;
+using Entities.DTOs;
+using Core.Utilities.Results;
+using Business.Contansts;
+using Core.Utilities.Result;
 
 namespace Business.Concrete
 {
     public class CarManager : ICarService
     {
-        ICarDal carDal;
+        ICarDal _carDal;
 
         public CarManager(ICarDal carDal)
         {
-            this.carDal = carDal;
+            this. _carDal = carDal;
         }
 
-        public List<Car> GetAll()
+        public IResult Add(Car car)
         {
-            return carDal.GetAll();
+            if (car.Description.Length <= 2)
+            {
+                return new ErrorResult(Messages.DescriptionNameInvalid);
+            }
+            _carDal.Add(car);
+            return new SuccessResult (Messages.DescriptionNameInvalid);
+        }
 
+        public IDataResult<List<Car>> GetAll()
+        {
+            if (DateTime.Now.Hour==22)
+            {
+                return new ErrorDataResult <List<Car>>(Messages.MaintenanceTime);
+            }
+            return new SuccessDataResult <List<Car>> (_carDal.GetAll(), Messages.CarListed);
+        }
+
+
+        public List<Color> GetAllByCars(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDataResult<List<Car>> GetByDailyPrice(decimal min, decimal max)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDataResult<Car> GetById(int carId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDataResult<List<CarDetailDto>>GetCarDetails()
+        {
+            return new SuccessDataResult <List<CarDetailDto >> (_carDal.GetCarDetails());
+        }
+
+        public IDataResult<List<Car>> GetAllByCars(string id) //çözümlenecek hata vermesin diye yaptım
+        {
+            throw new NotImplementedException();
         }
     }
 }

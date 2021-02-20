@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using System;
 using System.Collections.Generic;
 
 namespace Business.Concrete
@@ -16,10 +17,8 @@ namespace Business.Concrete
 
         public List<Id> GetById()
         {
-            return idDal.GetById();
+            throw new NotImplementedException();
 
         }
-
-
     }
 }

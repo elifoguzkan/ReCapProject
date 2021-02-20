@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-
+using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.InMemory
 {
@@ -38,6 +38,16 @@ namespace DataAccess.Concrete.InMemory
         {
             Id idToDelete = _ids.SingleOrDefault(i => i.CarId == i.CarId);
             _ids.Remove(idToDelete);
+        }
+
+        public Id Get(Expression<Func<Id, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Id> GetAll(Expression<Func<Id, bool>> filter = null)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Id> GetByAllId(int carId)

@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Core.Utilities.Results
+{
+    public class ErrorResult:Result
+    {
+        public ErrorResult(string message) : base(false, message) //result içindeki 2 parametreli kısım
+        {
+
+        }
+        public ErrorResult() : base(false) //tek parametreli olan true kısım success yani
+        {
+
+        }
+    }
+}

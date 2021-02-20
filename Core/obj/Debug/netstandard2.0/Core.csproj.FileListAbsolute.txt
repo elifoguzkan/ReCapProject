@@ -1,0 +1,9 @@
+C:\Users\elifc\source\repos\ReCapProject\Core\bin\Debug\netstandard2.0\Core.deps.json
+C:\Users\elifc\source\repos\ReCapProject\Core\bin\Debug\netstandard2.0\Core.dll
+C:\Users\elifc\source\repos\ReCapProject\Core\bin\Debug\netstandard2.0\Core.pdb
+C:\Users\elifc\source\repos\ReCapProject\Core\obj\Debug\netstandard2.0\Core.csprojAssemblyReference.cache
+C:\Users\elifc\source\repos\ReCapProject\Core\obj\Debug\netstandard2.0\Core.AssemblyInfoInputs.cache
+C:\Users\elifc\source\repos\ReCapProject\Core\obj\Debug\netstandard2.0\Core.AssemblyInfo.cs
+C:\Users\elifc\source\repos\ReCapProject\Core\obj\Debug\netstandard2.0\Core.csproj.CoreCompileInputs.cache
+C:\Users\elifc\source\repos\ReCapProject\Core\obj\Debug\netstandard2.0\Core.dll
+C:\Users\elifc\source\repos\ReCapProject\Core\obj\Debug\netstandard2.0\Core.pdb
