@@ -35,7 +35,7 @@ namespace Business.Concrete
             {
                 return new ErrorDataResult <List<Car>>(Messages.MaintenanceTime);
             }
-            return new SuccessDataResult <List<Car>> (_carDal.GetAll(), Messages.CarListed);
+            return new SuccessDataResult <List<Car>> (_carDal.GetAll(), Messages.ListedMessage);
         }
 
 
@@ -62,6 +62,27 @@ namespace Business.Concrete
         public IDataResult<List<Car>> GetAllByCars(string id) //çözümlenecek hata vermesin diye yaptım
         {
             throw new NotImplementedException();
+        }
+
+        
+        public IResult Delete(Car car)
+        {
+            if (car.CarId==0)
+            {
+                return new ErrorResult(Messages.DeletedMessage);
+            }
+            _carDal.Add(car);
+            return new SuccessResult(Messages.ErrorMessage);
+        }
+
+        public IResult Update(Car car)
+        {
+            if (car.DailyPrice >= 0) //tamamen koşul bulamadığım için test amaçlı yapıldı
+            {
+                return new ErrorResult(Messages.UpdatedMessage);
+            }
+            _carDal.Add(car);
+            return new SuccessResult(Messages.ErrorMessage);
         }
     }
 }

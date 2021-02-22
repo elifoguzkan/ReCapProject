@@ -3,40 +3,47 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System.Collections.Generic;
 using System;
+using Business.Contansts;
+using Core.Utilities.Results;
+using Core.Utilities.Result;
 
 namespace Business.Concrete
 {
-    public class ColorManager:IColorService
+    public class ColorManager : IColorService
     {
         IColorDal _colorDal;
         public ColorManager(IColorDal colorDal)
         {
-            this. _colorDal = colorDal;
+            _colorDal = colorDal;
         }
-
-        public void Add(Color color)
+        public IResult Add(Color color)
         {
+            if (color.ColorName.Length <= 2)
+            {
+                return new ErrorResult(Messages.DescriptionNameInvalid);
+            }
             _colorDal.Add(color);
+            return new SuccessResult(Messages.DescriptionNameInvalid);
         }
 
-        public void Delete(Color color)
+        public IResult Delete(Color color)
         {
-            _colorDal.Delete(color);
+            throw new NotImplementedException();
         }
 
-        public List<Color> GetAll()
+        public IDataResult<List<Color>> GetAll()
         {
-            return _colorDal.GetAll();
+            throw new NotImplementedException();
         }
 
-        public List<Color> GetCarsByColorId(int id)
+        public IDataResult<Color> GetCarsByColorId(int id)
         {
-            return _colorDal.GetAll(c => c.ColorId == id);
-         }
+            throw new NotImplementedException();
+        }
 
-        public void Update(Color color)
+        public IResult Update(Color color)
         {
-            _colorDal.Update(color);
+            throw new NotImplementedException();
         }
     }
 }

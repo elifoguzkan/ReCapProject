@@ -1,4 +1,7 @@
 ﻿using Business.Abstract;
+using Business.Contansts;
+using Core.Utilities.Result;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -12,18 +15,36 @@ namespace Business.Concrete
         IBrandDal _brandDal;
         public BrandManager(IBrandDal brandDal)
         {
-             _brandDal = brandDal;
+            _brandDal = brandDal;
+        }
+        public IResult Add(Brand brand)
+        {
+            if (brand.BrandName.Length <= 2)
+            {
+                return new ErrorResult(Messages.DescriptionNameInvalid);
+            }
+            _brandDal.Add(brand);
+            return new SuccessResult(Messages.DescriptionNameInvalid);
         }
 
-        public List<Brand> GetAll()
+        public IResult Delete(Brand brand)
         {
-            return _brandDal.GetAll();
+            throw new NotImplementedException();
         }
 
-        public List<Brand> GetCarsByBrandId(int brandId)
+        public IDataResult<List<Brand>> GetAll()
         {
-            return _brandDal.GetAll(b => b.BrandId == brandId);
-         
+            throw new NotImplementedException();
+        }
+
+        public IDataResult<List<Brand>> GetCarsByBrandId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IResult Update(Brand brand)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Contansts;
 using Core.Utilities.Result;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -18,7 +19,12 @@ namespace Business.Concrete
         }
         public IResult Add(User user)
         {
-            throw new NotImplementedException();
+            if (user.UserId==user.UserId)
+            {
+                return new ErrorResult(Messages.DescriptionNameInvalid);
+            }
+            _userDal.Add(user);
+            return new SuccessResult(Messages.DescriptionNameInvalid);
         }
 
         public IResult Delete(User user)
@@ -27,6 +33,11 @@ namespace Business.Concrete
         }
 
         public IDataResult<List<User>> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDataResult<User> GetById(int id)
         {
             throw new NotImplementedException();
         }
