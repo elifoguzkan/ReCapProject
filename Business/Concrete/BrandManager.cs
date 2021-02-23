@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Contansts;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Result;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -19,10 +21,7 @@ namespace Business.Concrete
         }
         public IResult Add(Brand brand)
         {
-            if (brand.BrandName.Length <= 2)
-            {
-                return new ErrorResult(Messages.DescriptionNameInvalid);
-            }
+            ValidationTool.Validate(new BrandValidator(), brand);
             _brandDal.Add(brand);
             return new SuccessResult(Messages.DescriptionNameInvalid);
         }

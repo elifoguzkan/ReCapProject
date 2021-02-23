@@ -6,6 +6,8 @@ using System;
 using Business.Contansts;
 using Core.Utilities.Results;
 using Core.Utilities.Result;
+using Core.CrossCuttingConcerns.Validation;
+using Business.ValidationRules.FluentValidation;
 
 namespace Business.Concrete
 {
@@ -18,10 +20,7 @@ namespace Business.Concrete
         }
         public IResult Add(Color color)
         {
-            if (color.ColorName.Length <= 2)
-            {
-                return new ErrorResult(Messages.DescriptionNameInvalid);
-            }
+            ValidationTool.Validate(new ColorValidator(),color);
             _colorDal.Add(color);
             return new SuccessResult(Messages.DescriptionNameInvalid);
         }

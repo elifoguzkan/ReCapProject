@@ -7,6 +7,8 @@ using Entities.DTOs;
 using Core.Utilities.Results;
 using Business.Contansts;
 using Core.Utilities.Result;
+using Core.CrossCuttingConcerns.Validation;
+using Business.ValidationRules.FluentValidation;
 
 namespace Business.Concrete
 {
@@ -21,10 +23,7 @@ namespace Business.Concrete
 
         public IResult Add(Car car)
         {
-            if (car.Description.Length <= 2)
-            {
-                return new ErrorResult(Messages.DescriptionNameInvalid);
-            }
+            ValidationTool.Validate(new CarValidator(), car);
             _carDal.Add(car);
             return new SuccessResult (Messages.DescriptionNameInvalid);
         }

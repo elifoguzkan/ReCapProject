@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Contansts;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Result;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -19,10 +21,7 @@ namespace Business.Concrete
         }
         public IResult Add(Rental rental)
         {
-            if(rental.ReturnDate==DateTime.Now.AddHours(-3))
-            {
-                return new SuccessResult(Messages.RentalAdded);
-            }
+            ValidationTool.Validate(new RentalValidator(), rental);
             _rentalDal.Add(rental);
             return new ErrorResult(Messages.RentalError);
             
